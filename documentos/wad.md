@@ -46,7 +46,7 @@ O banco de dados foi desenvolvido com base no modelo relacional, uma abordagem q
 
 A seguir, serão apresentados os modelos relacionais que compõem o banco de dados da aplicação, acompanhados de uma explicação detalhada sobre cada tabela e seus respectivos relacionamentos.
 
-<div style="text-align: center;">
+<div style="text-align: center;" align="center">
     <sub>Figura 1 - Modelo Relacional do Banco de Dados</sub>
 </div>
 <img src="./assets/modelo_relacional.png" />
