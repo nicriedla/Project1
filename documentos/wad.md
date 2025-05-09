@@ -48,7 +48,7 @@ A seguir, serão apresentados os modelos relacionais que compõem o banco de dad
 
 <div style="text-align: center;">
     <sub>Figura 1 - Modelo Relacional do Banco de Dados</sub>
-    <img src="../assets/modelo_relacional.png" />
+    <img src="./assets/modelo_relacional.png" />
     <sup>Fonte: Autoria própria (2025)</sup>
 </div>
 
