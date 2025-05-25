@@ -184,6 +184,8 @@ Foram implementadas três tabelas principais no banco de dados, refletidas diret
 
 ### 3.2. Arquitetura (Semana 5)
 
+ A imagem abaixo ilustra a estrutura básica da arquitetura MVC, mostrando a interação entre suas três camadas principais: Model, View e Controller.
+
  <div style="text-align: center;" align="center">
     <sub>Figura 2 - Arquitetura MVC</sub>
 </div>
