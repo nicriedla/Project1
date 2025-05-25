@@ -40,7 +40,7 @@ A estrutura do sistema foi concebida com base na arquitetura MVC (Model-View-Con
 
 ## <a name="c3"></a>3. Projeto da Aplicação Web
 
-### 3.1. Modelagem do banco de dados  (Semana 3)
+### 3.1. Modelagem do banco de dados  
 
 O banco de dados foi desenvolvido com base no modelo relacional, uma abordagem que organiza os dados em tabelas interligadas, garantindo consistência, integridade e facilidade de acesso às informações. 
 
@@ -114,7 +114,7 @@ Os relacionamentos entre as tabelas são definidos da seguinte forma:
 
 Além disso, a seguir, tem-se o arquivo referente à modelagem física do banco de dados, o qual define a estrutura real das tabelas no sistema gerenciador de banco de dados (SGBD). Esse script em SQL permite a criação das tabelas conforme a modelagem proposta, garantindo a integridade referencial e a correta organização dos dados.
 
-Acessar arquivo: [Código](../scripts/Codigo.sql)
+Acessar arquivo: [Código](../scripts/init.sql)
 
 ```sql
 -- Tabela: usuarios
@@ -155,19 +155,57 @@ CREATE TABLE tarefas (
 ```
 
 
-### 3.1.1 BD e Models (Semana 5)
-*Descreva aqui os Models implementados no sistema web*
+### 3.1.1 BD e Models 
+
+Foram implementadas três tabelas principais no banco de dados, refletidas diretamente nos Models da aplicação:
+
+**Usuários**
+
+- id: Identificador único do usuário.
+- nome: Nome completo.
+- email: Endereço de e-mail.
+- senha: Senha criptografada.
+
+**Matérias**
+
+- id: Identificador único da matéria.
+- nome: Nome da matéria (ex: Matemática, Física).
+- usuario_id: ID do usuário que associou essa matéria ao seu perfil.
+
+**Tarefas**
+
+- id: Identificador único da tarefa.
+- titulo: Título da tarefa.
+- descricao: Detalhamento da tarefa.
+- status: Situação da tarefa (ex: pendente, concluída).
+- data_limite: Prazo de entrega da tarefa.
+- usuario_id: ID do usuário responsável pela tarefa.
+- materia_id: ID da matéria à qual a tarefa está associada.
 
 ### 3.2. Arquitetura (Semana 5)
 
-*Posicione aqui o diagrama de arquitetura da sua solução de aplicação web. Atualize sempre que necessário.*
+ <div style="text-align: center;" align="center">
+    <sub>Figura 2 - Arquitetura MVC</sub>
+</div>
+<img src="../assets/ArquiteturaMVC.png" />
+<div style="text-align: center; " align="center">
+    <sup>Fonte: Autoria própria (2025)</sup>
+</div>
 
-**Instruções para criação do diagrama de arquitetura**  
-- **Model**: A camada que lida com a lógica de negócios e interage com o banco de dados.
-- **View**: A camada responsável pela interface de usuário.
-- **Controller**: A camada que recebe as requisições, processa as ações e atualiza o modelo e a visualização.
-  
-*Adicione as setas e explicações sobre como os dados fluem entre o Model, Controller e View.*
+**1. View (Frontend):**
+- É a interface com a qual o usuário interage. Por exemplo: páginas de login, cadastro, visualização de tarefas e matérias.
+- Envia requisições (como formulários) para o Controller.
+
+**2. Controller (Lógica de Controle):**
+- Recebe as requisições da View.
+- Valida e processa os dados.
+Chama os métodos do Model para ler/gravar dados no banco.
+- Devolve a resposta (dados ou redirecionamento) para a View.
+
+**3. Model (Lógica de Dados):**
+- Contém a lógica de negócios da aplicação.
+- Realiza operações no banco de dados (SELECT, INSERT, UPDATE, DELETE).
+- Retorna os dados processados ao Controller.
 
 ### 3.3. Wireframes (Semana 03 - opcional)
 
@@ -182,9 +220,46 @@ CREATE TABLE tarefas (
 
 *Posicione aqui algumas imagens demonstrativas de seu protótipo de alta fidelidade e o link para acesso ao protótipo completo (mantenha o link sempre público para visualização).*
 
-### 3.6. WebAPI e endpoints (Semana 05)
+### 3.6. WebAPI e Endpoints 
 
-*Utilize um link para outra página de documentação contendo a descrição completa de cada endpoint. Ou descreva aqui cada endpoint criado para seu sistema.*  
+Abaixo estão descritos todos os endpoints da WebAPI do sistema **Estuda+**, organizados por entidade (Tarefas, Usuários e Matérias). 
+
+---
+
+#### 🔹 Tarefas
+
+| Método | Rota            | Descrição                     | Parâmetros                                                                 |
+|--------|------------------|-------------------------------|----------------------------------------------------------------------------|
+| POST   | `/tarefas`       | Cria uma nova tarefa          | Body: `{ titulo, descricao, status_id, data_limite, usuario_id, materia_id }` |
+| GET    | `/tarefas`       | Lista todas as tarefas        | —                                                                          |
+| PUT    | `/tarefas/:id`   | Edita uma tarefa existente    | Params: `id` <br> Body: `{ titulo?, descricao?, status_id?, data_limite?, usuario_id?, materia_id? }` |
+| DELETE | `/tarefas/:id`   | Exclui uma tarefa             | Params: `id`                                                               |
+
+---
+
+#### 🔹 Usuários
+
+| Método | Rota              | Descrição                             | Parâmetros                                           |
+|--------|-------------------|----------------------------------------|------------------------------------------------------|
+| POST   | `/usuarios`       | Cria um novo usuário                   | Body: `{ nome, email, senha }`                       |
+| GET    | `/usuarios`       | Lista todos os usuários                | —                                                    |
+| GET    | `/usuarios/:id`   | Retorna os dados de um usuário         | Params: `id`                                         |
+| PUT    | `/usuarios/:id`   | Atualiza os dados de um usuário        | Params: `id` <br> Body: `{ nome?, email?, senha? }` |
+| DELETE | `/usuarios/:id`   | Remove um usuário                      | Params: `id`                                         |
+
+---
+
+#### 🔹 Matérias
+
+| Método | Rota               | Descrição                              | Parâmetros                                             |
+|--------|--------------------|------------------------------------------|--------------------------------------------------------|
+| POST   | `/materias`        | Cria uma nova matéria                    | Body: `{ nome, usuario_id }`                           |
+| GET    | `/materias`        | Lista todas as matérias                  | —                                                      |
+| PUT    | `/materias/:id`    | Atualiza uma matéria                     | Params: `id` <br> Body: `{ nome?, usuario_id? }`       |
+| DELETE | `/materias/:id`    | Remove uma matéria                       | Params: `id`                                           |
+
+---
+
 
 ### 3.7 Interface e Navegação (Semana 07)
 
