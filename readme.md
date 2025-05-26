@@ -100,7 +100,7 @@ Aqui estão exemplos de chamadas que você pode testar no Postman:
 {
   "titulo": "Estudar para a prova",
   "descricao": "Revisar os capítulos 1 a 3",
-  "status_id": "pendente",
+  "status": "pendente",
   "data_limite": "2025-05-30",
   "usuario_id": 1,
   "materia_id": 1
@@ -114,7 +114,7 @@ Aqui estão exemplos de chamadas que você pode testar no Postman:
 {
   "titulo": "Estudar estatística",
   "descricao": "Focar nos capítulos 4 a 6",
-  "status_id": fazendo,
+  "status": "fazendo",
   "data_limite": "2025-06-05",
   "usuario_id": 1,
   "materia_id": 1
@@ -159,7 +159,7 @@ Aqui estão exemplos de chamadas que você pode testar no Postman:
 ```
 {
   "nome": "Matemática",
-  "usuarioId": 1
+  "usuario_id": 1
 }
 ```
 
