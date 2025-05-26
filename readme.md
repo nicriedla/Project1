@@ -94,6 +94,7 @@ Testando as APIs com o Postman
 Aqui estão exemplos de chamadas que você pode testar no Postman:
 
 **Tarefas**
+
 *Criar tarefa:* POST http://localhost:3000/tarefas
 ```
 {
@@ -125,6 +126,7 @@ Aqui estão exemplos de chamadas que você pode testar no Postman:
 ---
 
 **Usuários**
+
 *Criar usuário:* POST http://localhost:3000/usuarios
 ```
 {
@@ -152,6 +154,7 @@ Aqui estão exemplos de chamadas que você pode testar no Postman:
 --- 
 
 **Matérias**
+
 *Criar matéria:* POST http://localhost:3000/materias
 ```
 {
