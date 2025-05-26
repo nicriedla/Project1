@@ -93,38 +93,6 @@ Testando as APIs com o Postman
 
 Aqui estão exemplos de chamadas que você pode testar no Postman:
 
-**Tarefas**
-
-*Criar tarefa:* POST http://localhost:3000/tarefas
-```
-{
-  "titulo": "Estudar para a prova",
-  "descricao": "Revisar os capítulos 1 a 3",
-  "status": "pendente",
-  "data_limite": "2025-05-30",
-  "usuario_id": 1,
-  "materia_id": 1
-}
-```
-
-*Listar tarefas:* GET http://localhost:3000/tarefas
-
-*Editar tarefa:* PUT http://localhost:3000/tarefas/1
-```
-{
-  "titulo": "Estudar estatística",
-  "descricao": "Focar nos capítulos 4 a 6",
-  "status": "fazendo",
-  "data_limite": "2025-06-05",
-  "usuario_id": 1,
-  "materia_id": 1
-}
-```
-
-*Excluir tarefa:* DELETE http://localhost:3000/tarefas/1
-
----
-
 **Usuários**
 
 *Criar usuário:* POST http://localhost:3000/usuarios
@@ -176,6 +144,39 @@ Aqui estão exemplos de chamadas que você pode testar no Postman:
 *Excluir matéria:* DELETE http://localhost:3000/materias/1
 
 ---
+
+**Tarefas**
+
+*Criar tarefa:* POST http://localhost:3000/tarefas
+```
+{
+  "titulo": "Estudar para a prova",
+  "descricao": "Revisar os capítulos 1 a 3",
+  "status": "pendente",
+  "data_limite": "2025-05-30",
+  "usuario_id": 1,
+  "materia_id": 1
+}
+```
+
+*Listar tarefas:* GET http://localhost:3000/tarefas
+
+*Editar tarefa:* PUT http://localhost:3000/tarefas/1
+```
+{
+  "titulo": "Estudar estatística",
+  "descricao": "Focar nos capítulos 4 a 6",
+  "status": "fazendo",
+  "data_limite": "2025-06-05",
+  "usuario_id": 1,
+  "materia_id": 1
+}
+```
+
+*Excluir tarefa:* DELETE http://localhost:3000/tarefas/1
+
+---
+
 Funcionalidades
 ---------------
 
