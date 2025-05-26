@@ -73,11 +73,13 @@ npm install
  Configure o arquivo `.env` com as variáveis de ambiente necessárias, com as configurações do banco de dados PostgreSQL.
 
 ````
-DB_HOST=localhost
-DB_PORT=5432
 DB_USER=seu_usuario
+DB_HOST=localhost
+DB_DATABASE=postgres
 DB_PASSWORD=sua_senha
-DB_NAME=nome_do_banco
+DB_PORT=5432
+DB_SSL=true
+PORT=3000
 ````
 
 Configuração do Banco de Dados
