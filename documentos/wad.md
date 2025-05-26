@@ -228,17 +228,6 @@ Abaixo estão descritos todos os endpoints da WebAPI do sistema **Estuda+**, org
 
 ---
 
-#### 🔹 Tarefas
-
-| Método | Rota            | Descrição                     | Parâmetros                                                                 |
-|--------|------------------|-------------------------------|----------------------------------------------------------------------------|
-| POST   | `/tarefas`       | Cria uma nova tarefa          | Body: `{ titulo, descricao, status_id, data_limite, usuario_id, materia_id }` |
-| GET    | `/tarefas`       | Lista todas as tarefas        | —                                                                          |
-| PUT    | `/tarefas/:id`   | Edita uma tarefa existente    | Params: `id` <br> Body: `{ titulo?, descricao?, status_id?, data_limite?, usuario_id?, materia_id? }` |
-| DELETE | `/tarefas/:id`   | Exclui uma tarefa             | Params: `id`                                                               |
-
----
-
 #### 🔹 Usuários
 
 | Método | Rota              | Descrição                             | Parâmetros                                           |
@@ -262,6 +251,16 @@ Abaixo estão descritos todos os endpoints da WebAPI do sistema **Estuda+**, org
 
 ---
 
+#### 🔹 Tarefas
+
+| Método | Rota            | Descrição                     | Parâmetros                                                                 |
+|--------|------------------|-------------------------------|----------------------------------------------------------------------------|
+| POST   | `/tarefas`       | Cria uma nova tarefa          | Body: `{ titulo, descricao, status_id, data_limite, usuario_id, materia_id }` |
+| GET    | `/tarefas`       | Lista todas as tarefas        | —                                                                          |
+| PUT    | `/tarefas/:id`   | Edita uma tarefa existente    | Params: `id` <br> Body: `{ titulo?, descricao?, status_id?, data_limite?, usuario_id?, materia_id? }` |
+| DELETE | `/tarefas/:id`   | Exclui uma tarefa             | Params: `id`                                                               |
+
+---
 
 ### 3.7 Interface e Navegação (Semana 07)
 
