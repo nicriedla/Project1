@@ -88,7 +88,9 @@ npm run init-db
     
 Isso criará as tabelas no seu banco de dados PostgreSQL.
     
-### Testando as APIs com o Postman
+Testando as APIs com o Postman
+------------------------------
+
 Aqui estão exemplos de chamadas que você pode testar no Postman:
 
 **Tarefas**
