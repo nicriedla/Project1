@@ -88,7 +88,89 @@ npm run init-db
     
 Isso criará as tabelas no seu banco de dados PostgreSQL.
     
+### Testando as APIs com o Postman
+Aqui estão exemplos de chamadas que você pode testar no Postman:
 
+**Tarefas**
+*Criar tarefa:* POST http://localhost:3000/tarefas
+```
+{
+  "titulo": "Estudar para a prova",
+  "descricao": "Revisar os capítulos 1 a 3",
+  "status_id": "pendente",
+  "data_limite": "2025-05-30",
+  "usuario_id": 1,
+  "materia_id": 1
+}
+```
+
+*Listar tarefas:* GET http://localhost:3000/tarefas
+
+*Editar tarefa:* PUT http://localhost:3000/tarefas/1
+```
+{
+  "titulo": "Estudar estatística",
+  "descricao": "Focar nos capítulos 4 a 6",
+  "status_id": fazendo,
+  "data_limite": "2025-06-05",
+  "usuario_id": 1,
+  "materia_id": 1
+}
+```
+
+*Excluir tarefa:* DELETE http://localhost:3000/tarefas/1
+
+---
+
+**Usuários**
+*Criar usuário:* POST http://localhost:3000/usuarios
+```
+{
+  "nome": "João Silva",
+  "email": "joao@email.com",
+  "senha": "senha123"
+}
+```
+
+*Listar todos os usuários:* GET http://localhost:3000/usuarios
+
+*Buscar usuário por ID:* GET http://localhost:3000/usuarios/1
+
+*Atualizar usuário:* PUT http://localhost:3000/usuarios/1
+```
+{
+  "nome": "Maria Eduarda Souza",
+  "email": "maria.souza@email.com",
+  "senha": "novaSenha456"
+}
+```
+
+*Excluir usuário:* DELETE http://localhost:3000/usuarios/1
+
+--- 
+
+**Matérias**
+*Criar matéria:* POST http://localhost:3000/materias
+```
+{
+  "nome": "Matemática",
+  "usuarioId": 1
+}
+```
+
+*Listar matérias:* GET http://localhost:3000/materias
+
+*Editar matéria:* PUT http://localhost:3000/materias/1
+```
+{
+  "nome": "Matemática Avançada",
+  "usuario_id": 1
+}
+```
+
+*Excluir matéria:* DELETE http://localhost:3000/materias/1
+
+---
 Funcionalidades
 ---------------
 
