@@ -5,6 +5,10 @@ const TarefaController = require('../controllers/TarefaController');
 const userController = require('../controllers/userController');
 const MateriaController = require('../controllers/MateriaController');
 
+router.get('/', (req, res) => {
+  res.send('API está funcionando!');
+});
+
 // Rotas para o CRUD de tarefas
 router.post('/tarefas', TarefaController.criarTarefa);
 router.get('/tarefas', TarefaController.listarTarefas);

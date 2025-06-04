@@ -14,8 +14,11 @@ app.use(bodyParser.json());
 // Usando as rotas definidas
 app.use('/', routes);
 
-
+app.get('/', (req, res) => {
+  res.send('API está funcionando!');
+});
 
 app.listen(port, () => {
   console.log(`Servidor rodando na porta ${port}`);
 });
+

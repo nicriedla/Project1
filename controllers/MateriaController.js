@@ -1,70 +1,58 @@
-const pool = require('../config/db');
+const materiaModels = require('../models/materiaModels');
 
-exports.listarMaterias = async (req, res) => {
-  const query = 'SELECT * FROM materias';
-
-  try {
-    const result = await pool.query(query);
-    res.status(200).json(result.rows);
-  } catch (err) {
-    res.status(500).json({ error: err.message });
-  }
-};
-
-exports.criarMateria = async (req, res) => {
-  const { usuario_id } = req.body;
-  const { nome } = req.body;
-
-  const query = `
-    INSERT INTO materias (nome, usuario_id)
-    VALUES ($1, $2)
-    RETURNING *`;
-  const values = [nome, usuario_id];
-
-  try {
-    const result = await pool.query(query, values);
-    const materia = result.rows[0];
-    res.status(201).json(materia);
-  } catch (err) {
-    res.status(500).json({ error: err.message });
-  }
-};
-
-exports.editarMateria = async (req, res) => {
-  const { id } = req.params;
-  const { nome } = req.body;
-
-  const query = `
-    UPDATE materias
-    SET nome = $1
-    WHERE id = $2 RETURNING *`;
-  const values = [nome, id];
-
-  try {
-    const result = await pool.query(query, values);
-    if (result.rows.length === 0) {
-      return res.status(404).json({ message: 'Matéria não encontrada' });
+const MateriaController = {
+  listarMaterias: async (req, res) => {
+    try {
+      const materias = await materiaModels.listarMaterias();
+      res.status(200).json(materias);
+    } catch (error) {
+      res.status(500).json({ error: error.message });
     }
-    res.status(200).json(result.rows[0]);
-  } catch (err) {
-    res.status(500).json({ error: err.message });
-  }
-};
+  },
 
-exports.excluirMateria = async (req, res) => {
-  const { id } = req.params;
+  criarMateria: async (req, res) => {
+    const { nome, usuario_id } = req.body;
 
-  const query = 'DELETE FROM materias WHERE id = $1 RETURNING *';
-  const values = [id];
-
-  try {
-    const result = await pool.query(query, values);
-    if (result.rows.length === 0) {
-      return res.status(404).json({ message: 'Matéria não encontrada' });
+    if (!nome) {
+      return res.status(400).json({ message: 'Preencha todos os campos' });
     }
-    res.status(200).json(result.rows[0]);
-  } catch (err) {
-    res.status(500).json({ error: err.message });
+
+    try {
+      const materia = await materiaModels.criarMateria(nome, usuario_id);
+      res.status(201).json(materia);
+    } catch (error) {
+      res.status(500).json({ error: error.message });
+    }
+  },
+
+  editarMateria: async (req, res) => {
+    const { id } = req.params;
+    const { nome } = req.body;
+
+    try {
+      const materia = await materiaModels.editarMateria(nome, id);
+      if (!materia) {
+        return res.status(404).json({ message: 'Matéria não encontrada' });
+      }
+      res.status(200).json(materia);
+    } catch (error) {
+      res.status(500).json({ error: error.message });
+    }
+  },
+
+  excluirMateria: async (req, res) => {
+    const { id } = req.params;
+
+    try {
+      const materia = await materiaModels.excluirMateria(id);
+      if (!materia) {
+        return res.status(404).json({ message: 'Matéria não encontrada' });
+      }
+      res.status(200).json({ message: 'Matéria excluída com sucesso' });
+    } catch (error) {
+      res.status(500).json({ error: error.message });
+    }
   }
 };
 
+module.exports = MateriaController;
