@@ -61,6 +61,15 @@ const listarTarefasPorUsuario = async (usuario_id) => {
   }
 };
 
+// Função para buscar uma tarefa pelo ID
+const buscarTarefaPorId = async (id) => {
+  try {
+    const result = await db.query('SELECT * FROM tarefas WHERE id = $1', [id]);
+    return result.rows[0];
+  } catch (error) {
+    throw new Error('Erro ao buscar tarefa: ' + error.message);
+  }
+};
 
 module.exports = {
   listarTarefas,
@@ -68,4 +77,5 @@ module.exports = {
   editarTarefa,
   excluirTarefa,
   listarTarefasPorUsuario,
+  buscarTarefaPorId,
 };

@@ -3,25 +3,46 @@
 <head>
   <meta charset="UTF-8">
   <title>Editar Tarefa</title>
+  <link rel="stylesheet" href="/views/css/EditarTarefa.css">
 </head>
 <body>
-  <h2>Editar Tarefa</h2>
-  <form action="/tarefas/<%= tarefa.id %>?_method=PUT" method="POST">
-    <label>Título:</label>
-    <input type="text" name="titulo" value="<%= tarefa.titulo %>" required><br>
-    <label>Descrição:</label>
-    <input type="text" name="descricao" value="<%= tarefa.descricao %>" required><br>
-    <label>Status:</label>
-    <select name="status">
-      <option value="pendente" <%= tarefa.status === 'pendente' ? 'selected' : '' %>>Pendente</option>
-      <option value="concluida" <%= tarefa.status === 'concluida' ? 'selected' : '' %>>Concluída</option>
-    </select><br>
-    <label>Data Limite:</label>
-    <input type="date" name="data_limite" value="<%= tarefa.data_limite.toISOString().slice(0,10) %>" required><br>
-    <label>Matéria ID:</label>
-    <input type="number" name="materia_id" value="<%= tarefa.materia_id %>" required><br>
-    <button type="submit">Salvar</button>
-  </form>
-  <a href="/Gerenciamento">Voltar</a>
+  <div class="center-container">
+    <div class="card">
+      <h2 class="title">Editar Tarefa</h2>
+      <form action="/tarefas/<%= tarefa.id %>?_method=PUT" method="POST">
+        <div>
+          <label class="form-label" for="titulo">Título:</label>
+          <input class="form-input" type="text" id="titulo" name="titulo" value="<%= tarefa.titulo %>" required>
+        </div>
+        <div>
+          <label class="form-label" for="descricao">Descrição:</label>
+          <textarea class="form-textarea" id="descricao" name="descricao" required><%= tarefa.descricao %></textarea>
+        </div>
+        <div>
+          <label class="form-label" for="status">Status:</label>
+          <select class="form-select" id="status" name="status">
+            <option value="pendente" <%= tarefa.status === 'pendente' ? 'selected' : '' %>>Pendente</option>
+            <option value="concluida" <%= tarefa.status === 'concluida' ? 'selected' : '' %>>Concluída</option>
+          </select>
+        </div>
+        <div>
+          <label class="form-label" for="data_limite">Data Limite:</label>
+          <input class="form-input" type="date" id="data_limite" name="data_limite" value="<%= tarefa.data_limite.toISOString().slice(0,10) %>" required>
+        </div>
+        <div>
+          <label class="form-label" for="materia_id">Matéria:</label>
+          <select class="form-select" id="materia_id" name="materia_id" required>
+            <% materias.forEach(function(materia) { %>
+              <option value="<%= materia.id %>" <%= tarefa.materia_id === materia.id ? 'selected' : '' %>><%= materia.nome %></option>
+            <% }) %>
+          </select>
+        </div>
+        <div class="form-buttons">
+          <button type="submit" class="btn btn-save">Salvar</button>
+          <a href="/Gerenciamento" class="btn btn-cancel">Cancelar</a>
+        </div>
+      </form>
+    </div>
+  </div>
 </body>
 </html>

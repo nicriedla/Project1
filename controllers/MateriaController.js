@@ -11,15 +11,16 @@ const MateriaController = {
   },
 
   criarMateria: async (req, res) => {
-    const { nome, usuario_id } = req.body;
+    const nome = req.body.nome;
+    const usuario_id = req.session.userId; // pega da sessão
 
     if (!nome) {
-      return res.status(400).json({ message: 'Preencha todos os campos' });
+      return res.status(400).json({ message: 'Preencha o nome da matéria' });
     }
 
     try {
-      const materia = await materiaModels.criarMateria(nome, usuario_id);
-      res.status(201).json(materia);
+      await materiaModels.criarMateria(nome, usuario_id);
+      res.redirect('/Gerenciamento2');
     } catch (error) {
       res.status(500).json({ error: error.message });
     }

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Nova Matéria</title>
+    <link rel="stylesheet" href="/views/css/NovaMateria.css">
+  </head>
+  <body>
+    <div class="card">
+      <h2>Criar Nova Matéria</h2>
+      <form action="/materias" method="POST">
+        <input type="hidden" name="usuario_id" value="<%= usuario_id %>">
+        <div>
+          <label>Nome da Matéria</label>
+          <input type="text" name="nome" required />
+        </div>
+        <button type="submit">Salvar</button>
+      </form>
+      <a href="/Gerenciamento2">Voltar</a>
+    </div>
+  </body>
+</html>

@@ -2,13 +2,13 @@
 <html>
   <head>
     <title>Criar Nova Tarefa</title>
-    <link rel="stylesheet" href="../css/test.css">
+    <link rel="stylesheet" href="/views/css/Gerenciamento2.css">
   </head>
   <body class="center-container">
     <div class="card">
       <h2 class="title">Nova Tarefa</h2>
-      <form action="/nova-tarefa" method="POST">
-        <input type="hidden" name="usuario_id">
+      <form action="/tarefas" method="POST">
+        <input type="hidden" name="usuario_id" value="<%= usuario_id %>">
 
         <div>
           <label class="form-label">Título</label>
@@ -24,7 +24,11 @@
           <label class="form-label">Matéria</label>
           <select class="form-select" name="materia_id" required>
             <option value="">Selecione</option>
-              <option></option>
+            <% if (materias && materias.length > 0) { %>
+              <% materias.forEach(function(materia) { %>
+                <option value="<%= materia.id %>"><%= materia.nome %></option>
+              <% }) %>
+            <% } %>
           </select>
         </div>
 
@@ -32,7 +36,6 @@
           <label class="form-label">Status</label>
           <select class="form-select" name="status">
             <option value="pendente">Pendente</option>
-            <option value="progresso">Em progresso</option>
             <option value="concluido">Concluído</option>
           </select>
         </div>
@@ -42,8 +45,10 @@
           <input type="date" class="form-input" name="data_limite" required />
         </div>
 
+        <a href="/NovaMateria" class="btn btn-create" style="margin-bottom: 16px;">+ Nova Matéria</a>
+
         <div class="form-buttons">
-          <a href="/Gerenciamento.html" class="btn btn-cancel">Cancelar</a>
+          <a href="/Gerenciamento" class="btn btn-cancel">Cancelar</a>
           <button type="submit" class="btn btn-save">Salvar</button>
         </div>
       </form>
