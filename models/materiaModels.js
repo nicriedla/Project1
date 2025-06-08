@@ -10,6 +10,16 @@ const listarMaterias = async () => {
   }
 };
 
+// Listar matérias por usuário
+const listarMateriasPorUsuario = async (usuario_id) => {
+  try {
+    const result = await db.query('SELECT * FROM materias WHERE usuario_id = $1', [usuario_id]);
+    return result.rows;
+  } catch (error) {
+    throw new Error('Erro ao obter matérias do usuário: ' + error.message);
+  }
+};
+
 // Criar uma nova matéria
 const criarMateria = async (nome, usuario_id) => {
   try {
@@ -51,6 +61,7 @@ const excluirMateria = async (id) => {
 
 module.exports = {
   listarMaterias,
+  listarMateriasPorUsuario,
   criarMateria,
   editarMateria,
   excluirMateria

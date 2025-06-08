@@ -52,6 +52,10 @@ const MateriaController = {
     } catch (error) {
       res.status(500).json({ error: error.message });
     }
+  },
+
+  listarMateriasPorUsuario: async (usuario_id) => {
+    return await materiaModels.listarMateriasPorUsuario(usuario_id);
   }
 };
 

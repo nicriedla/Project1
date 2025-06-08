@@ -46,9 +46,26 @@ const excluirTarefa = async (id) => {
   }
 };
 
+// Função para obter tarefas por usuário
+const listarTarefasPorUsuario = async (usuario_id) => {
+  try {
+    const result = await db.query(
+      `SELECT t.*, m.nome AS materia_nome FROM tarefas t
+       JOIN materias m ON t.materia_id = m.id
+       WHERE t.usuario_id = $1`,
+      [usuario_id]
+    );
+    return result.rows;
+  } catch (error) {
+    throw new Error('Erro ao obter tarefas do usuário: ' + error.message);
+  }
+};
+
+
 module.exports = {
   listarTarefas,
   criarTarefa,
   editarTarefa,
-  excluirTarefa
+  excluirTarefa,
+  listarTarefasPorUsuario,
 };

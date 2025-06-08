@@ -12,6 +12,7 @@ router.get('/', (req, res) => {
 // Rotas para o CRUD de tarefas
 router.post('/tarefas', TarefaController.criarTarefa);
 router.get('/tarefas', TarefaController.listarTarefas);
+router.get('/tarefas/:id/editar', TarefaController.paginaEditarTarefa);
 router.put('/tarefas/:id', TarefaController.editarTarefa);
 router.delete('/tarefas/:id', TarefaController.excluirTarefa);
 
@@ -21,6 +22,7 @@ router.get('/usuarios', userController.getAllUsers);
 router.get('/usuarios/:id', userController.getUserById);
 router.put('/usuarios/:id', userController.updateUser);
 router.delete('/usuarios/:id', userController.deleteUser);
+router.post('/login', userController.loginUser);
 
 // Rotas para o CRUD de matérias
 router.post('/materias', MateriaController.criarMateria);

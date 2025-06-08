@@ -1,6 +1,7 @@
 // services/usuarioservice.js
 
 const db = require('../config/db');
+const Usuario = require('../models/userModel');
 
 // Função para obter todos os usuários
 const getAllUsers = async () => {
@@ -58,10 +59,16 @@ const deleteUser = async (id) => {
   }
 };
 
+// Função para obter um usuário por email
+const getUserByEmail = async (email) => {
+  return await Usuario.getByEmail(email);
+};
+
 module.exports = {
   getAllUsers,
   getUserById,
   createUser,
   updateUser,
-  deleteUser
+  deleteUser,
+  getUserByEmail,
 };

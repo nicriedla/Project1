@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Criar Nova Tarefa</title>
+    <link rel="stylesheet" href="../css/test.css">
+  </head>
+  <body class="center-container">
+    <div class="card">
+      <h2 class="title">Nova Tarefa</h2>
+      <form action="/nova-tarefa" method="POST">
+        <input type="hidden" name="usuario_id">
+
+        <div>
+          <label class="form-label">Título</label>
+          <input type="text" class="form-input" name="titulo" placeholder="Digite o título da tarefa" required />
+        </div>
+
+        <div>
+          <label class="form-label">Descrição</label>
+          <textarea class="form-textarea" name="descricao" placeholder="Descrição da tarefa" required></textarea>
+        </div>
+
+        <div>
+          <label class="form-label">Matéria</label>
+          <select class="form-select" name="materia_id" required>
+            <option value="">Selecione</option>
+              <option></option>
+          </select>
+        </div>
+
+        <div>
+          <label class="form-label">Status</label>
+          <select class="form-select" name="status">
+            <option value="pendente">Pendente</option>
+            <option value="progresso">Em progresso</option>
+            <option value="concluido">Concluído</option>
+          </select>
+        </div>
+
+        <div>
+          <label class="form-label">Data de vencimento</label>
+          <input type="date" class="form-input" name="data_limite" required />
+        </div>
+
+        <div class="form-buttons">
+          <a href="/Gerenciamento.html" class="btn btn-cancel">Cancelar</a>
+          <button type="submit" class="btn btn-save">Salvar</button>
+        </div>
+      </form>
+    </div>
+  </body>
+</html>

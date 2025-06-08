@@ -11,6 +11,11 @@ class Usuario {
     return result.rows[0];
   }
 
+  static async getByEmail(email) {
+    const result = await db.query('SELECT * FROM usuarios WHERE email = $1', [email]);
+    return result.rows[0];
+  }
+
   static async create(data) {
     const result = await db.query(
       'INSERT INTO usuarios (nome, email, senha) VALUES ($1, $2, $3) RETURNING *',

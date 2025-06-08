@@ -27,10 +27,13 @@ const getUserById = async (req, res) => {
 const createUser = async (req, res) => {
   try {
     const { nome, email, senha } = req.body;
-    const newUser = await userService.createUser(nome, email, senha);
-    res.status(201).json(newUser);
+    await userService.createUser(nome, email, senha);
+
+    // Redireciona para a página de login após cadastro, com mensagem de sucesso
+    return res.redirect('/Login?success=1');
   } catch (error) {
-    res.status(500).json({ error: error.message });
+    // Se erro, renderiza a página de cadastro com a mensagem de erro
+    return res.render('pages/cadastro', { error: error.message, success: undefined });
   }
 };
 
@@ -61,10 +64,27 @@ const deleteUser = async (req, res) => {
   }
 };
 
+const loginUser = async (req, res) => {
+  const { email, senha } = req.body;
+  try {
+    const user = await userService.getUserByEmail(email);
+    if (user && user.senha === senha) {
+      // Salva o ID do usuário na sessão
+      req.session.userId = user.id;
+      return res.redirect('/Gerenciamento');
+    } else {
+      return res.render('pages/Login', { success: undefined, error: 'Email ou senha inválidos.' });
+    }
+  } catch (error) {
+    return res.render('pages/Login', { success: undefined, error: 'Erro ao fazer login.' });
+  }
+};
+
 module.exports = {
   getAllUsers,
   getUserById,
   createUser,
   updateUser,
-  deleteUser
+  deleteUser,
+  loginUser
 };

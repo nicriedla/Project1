@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gerenciamento</title>
+</head>
+<body>
+    <div class="card">
+      <h2>Minhas Tarefas</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Título</th>
+            <th>Matéria</th>
+            <th>Status</th>
+            <th>Vencimento</th>
+            <th>Ações</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% if (tarefas && tarefas.length > 0) { %>
+            <% tarefas.forEach(function(tarefa) { %>
+              <tr>
+                <td><%= tarefa.titulo %></td>
+                <td><%= tarefa.materia_nome %></td>
+                <td class="status <%= tarefa.status %>"><%= tarefa.status.charAt(0).toUpperCase() + tarefa.status.slice(1) %></td>
+                <td><%= tarefa.data_limite.toISOString().slice(0,10) %></td>
+                <td>
+                  <a href="/tarefas/<%= tarefa.id %>/editar" class="btn-edit">Editar</a>
+                  <form action="/tarefas/<%= tarefa.id %>?_method=DELETE" method="POST" style="display:inline;">
+                    <button type="submit" class="btn-delete">Excluir</button>
+                  </form>
+                </td>
+              </tr>
+            <% }) %>
+          <% } else { %>
+            <tr>
+              <td colspan="5">Nenhuma tarefa encontrada.</td>
+            </tr>
+          <% } %>
+        </tbody>
+      </table>
+    </div>
+  </body>
+</html>

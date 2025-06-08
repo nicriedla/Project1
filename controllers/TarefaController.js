@@ -71,7 +71,18 @@ const TarefaController = {
     } catch (error) {
       res.status(500).json({ error: error.message });
     }
-  }
+  },
+
+  paginaEditarTarefa: async (req, res) => {
+    const { id } = req.params;
+    try {
+      const tarefa = await tarefaModels.buscarTarefaPorId(id);
+      if (!tarefa) return res.redirect('/Gerenciamento');
+      res.render('pages/EditarTarefa', { tarefa });
+    } catch (error) {
+      res.redirect('/Gerenciamento');
+    }
+  },
 };
 
 module.exports = TarefaController;
