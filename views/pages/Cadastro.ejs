@@ -15,7 +15,7 @@
         <% if (typeof success !== 'undefined') { %>
             <div class="success"><%= success %></div>
         <% } %>
-        <form action="/usuarios" method="POST">
+        <form id="cadastroForm">
             <label for="nome">Nome:</label>
             <input type="text" name="nome" placeholder="Insira seu nome" required>
             <br>
@@ -28,5 +28,27 @@
             <button type="submit">Cadastrar</button>
         </form>
     </div>
+    <script>
+document.getElementById('cadastroForm').addEventListener('submit', async function(e) {
+    e.preventDefault();
+    const form = e.target;
+    const data = {
+        nome: form.nome.value,
+        email: form.email.value,
+        senha: form.senha.value
+    };
+    const res = await fetch('/usuarios', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data)
+    });
+    if (res.redirected) {
+        window.location.href = res.url;
+    } else {
+        const html = await res.text();
+        document.body.innerHTML = html;
+    }
+});
+</script>
 </body>
 </html>

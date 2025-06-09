@@ -1,16 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <title>Editar Tarefa</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="/views/css/EditarTarefa.css">
 </head>
+
 <body>
   <div class="center-container">
     <div class="card">
       <h2 class="title">Editar Tarefa</h2>
-      <form action="/tarefas/<%= tarefa.id %>?_method=PUT" method="POST">
+      <form id="editarTarefaForm">
         <div>
           <label class="form-label" for="titulo">Título:</label>
           <input class="form-input" type="text" id="titulo" name="titulo" value="<%= tarefa.titulo %>" required>
@@ -22,20 +24,23 @@
         <div>
           <label class="form-label" for="status">Status:</label>
           <select class="form-select" id="status" name="status">
-            <option value="pendente" <%= tarefa.status === 'pendente' ? 'selected' : '' %>>Pendente</option>
-            <option value="concluida" <%= tarefa.status === 'concluida' ? 'selected' : '' %>>Concluída</option>
+            <option value="pendente" <%=tarefa.status==='pendente' ? 'selected' : '' %>>Pendente</option>
+            <option value="concluida" <%=tarefa.status==='concluida' ? 'selected' : '' %>>Concluída</option>
           </select>
         </div>
         <div>
           <label class="form-label" for="data_limite">Data Limite:</label>
-          <input class="form-input" type="date" id="data_limite" name="data_limite" value="<%= tarefa.data_limite.toISOString().slice(0,10) %>" required>
+          <input class="form-input" type="date" id="data_limite" name="data_limite"
+            value="<%= tarefa.data_limite.toISOString().slice(0,10) %>" required>
         </div>
         <div>
           <label class="form-label" for="materia_id">Matéria:</label>
           <select class="form-select" id="materia_id" name="materia_id" required>
             <% materias.forEach(function(materia) { %>
-              <option value="<%= materia.id %>" <%= tarefa.materia_id === materia.id ? 'selected' : '' %>><%= materia.nome %></option>
-            <% }) %>
+              <option value="<%= materia.id %>" <%=tarefa.materia_id===materia.id ? 'selected' : '' %>><%= materia.nome
+                  %>
+              </option>
+              <% }) %>
           </select>
         </div>
         <div class="form-buttons">
@@ -45,5 +50,31 @@
       </form>
     </div>
   </div>
+  <script>
+    document.getElementById('editarTarefaForm').addEventListener('submit', async function (e) {
+      e.preventDefault();
+      const form = e.target;
+      const data = {
+        titulo: form.titulo.value,
+        descricao: form.descricao.value,
+        status: form.status.value,
+        data_limite: form.data_limite.value,
+        materia_id: form.materia_id.value
+      };
+      const tarefaId = "<%= tarefa.id %>";
+      const res = await fetch(`/tarefas/${tarefaId}?_method=PUT`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data)
+      });
+      if (res.redirected) {
+        window.location.href = res.url;
+      } else {
+        const html = await res.text();
+        document.body.innerHTML = html;
+      }
+    });
+  </script>
 </body>
+
 </html>

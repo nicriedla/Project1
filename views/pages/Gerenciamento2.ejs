@@ -8,7 +8,7 @@
   <body class="center-container">
     <div class="card">
       <h2 class="title">Nova Tarefa</h2>
-      <form action="/tarefas" method="POST">
+      <form id="novaTarefaForm">
         <input type="hidden" name="usuario_id" value="<%= usuario_id %>">
 
         <div>
@@ -55,5 +55,30 @@
         </div>
       </form>
     </div>
+    <script>
+document.getElementById('novaTarefaForm').addEventListener('submit', async function(e) {
+    e.preventDefault();
+    const form = e.target;
+    const data = {
+        usuario_id: form.usuario_id.value,
+        titulo: form.titulo.value,
+        descricao: form.descricao.value,
+        materia_id: form.materia_id.value,
+        status: form.status.value,
+        data_limite: form.data_limite.value
+    };
+    const res = await fetch('/tarefas', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data)
+    });
+    if (res.redirected) {
+        window.location.href = res.url;
+    } else {
+        const html = await res.text();
+        document.body.innerHTML = html;
+    }
+});
+</script>
   </body>
 </html>
