@@ -20,6 +20,8 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center; /* Adicione esta linha */
+  height: 100%;
 }
 
 .login h1 {
@@ -31,7 +33,6 @@ body {
 
 label {
   display: block;
-  margin-bottom: 6px;
   color: #636e72;
   font-size: 1rem;
 }
@@ -40,9 +41,8 @@ input[type="email"],
 input[type="password"],
 input[type="text"] {
   width: 100%;
-  padding: 10px 8px;
-  margin-bottom: 18px;
-  border: 1px solid #dfe6e9;
+  padding: 8px 8px; /* reduzido */
+  border: 1.5px solid #dfe6e9;
   border-radius: 6px;
   font-size: 1rem;
   background: #f9f9f9;
@@ -52,37 +52,35 @@ input[type="text"] {
 input[type="email"]:focus,
 input[type="password"]:focus,
 input[type="text"]:focus {
-  border: 1.5px solid #0984e3;
+  border: 1.5px solid #8509e3;
   outline: none;
   background: #fff;
 }
 
 button[type="submit"] {
-  width: 100%;
-  padding: 10px 0;
-  background: #0984e3;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: auto;
+  min-width: 200px;
+  padding: 8px 40px;  /* reduzido */
+  background: #8509e3;
   color: #fff;
   border: none;
   border-radius: 6px;
   font-size: 1.1rem;
   font-weight: 500;
   cursor: pointer;
-  margin-bottom: 10px;
+  margin-bottom: 6px; /* reduzido */
   transition: background 0.2s;
 }
 
 button[type="submit"]:hover {
-  background: #74b9ff;
+  background: #b47fde;
 }
 
 .error {
-  background: #ffe6e6;
   color: #d63031;
-  border: 1px solid #d63031;
-  border-radius: 5px;
-  padding: 8px 12px;
-  margin-bottom: 14px;
-  width: 100%;
   text-align: center;
 }
 
@@ -91,25 +89,42 @@ button[type="submit"]:hover {
   color: #00b894;
   border: 1px solid #00b894;
   border-radius: 5px;
-  padding: 8px 12px;
-  margin-bottom: 14px;
+  padding: 6px 8px;   /* reduzido */
+  margin-bottom: 4px; /* reduzido */
   width: 100%;
   text-align: center;
 }
 
 .login p {
-  margin-top: 10px;
+  margin-top: 4px; /* reduzido */
   font-size: 0.98rem;
 }
 
 .login a {
-  color: #0984e3;
+  color: #8509e3;
   text-decoration: none;
   font-weight: 500;
 }
 
 .login a:hover {
   text-decoration: underline;
+  color: #b47fde;
+}
+
+.login form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+label,
+input[type="email"],
+input[type="password"],
+input[type="text"],
+.login a,
+.login p {
+  text-align: left;
+  width: 100%;
 }
 
 @media (max-width: 600px) {
