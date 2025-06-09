@@ -271,21 +271,27 @@ A integração entre frontend e backend é realizada principalmente por meio da 
 A estrutura MVC foi mantida durante todo o desenvolvimento, separando claramente as responsabilidades entre modelos, controladores, views e rotas. O sistema pode ser executado facilmente com `npm start` ou `node server.js`, permitindo o gerenciamento completo das informações pelo usuário.
 
 A tela de login permite que o usuário acesse o sistema informando seu e-mail e senha cadastrados. Caso ainda não possua uma conta, há um link para a tela de cadastro.
+
 ![Login](../assets/Login.png)
 
 Na tela de cadastro, o usuário pode criar uma nova conta informando nome, e-mail e senha. Após o cadastro, é possível acessar o sistema normalmente.
+
 ![Cadastro](../assets/Cadastrar.png)
 
 Após o login, o usuário é direcionado para a tela de gerenciamento de tarefas, onde pode visualizar todas as tarefas cadastradas, seus status, prazos e matérias associadas. É possível editar ou excluir tarefas diretamente nesta tela.
+
 ![Gerenciamento](../assets/ListarTarefas.png)
 
 A tela de edição de tarefa permite alterar os detalhes de uma tarefa já cadastrada, como título, descrição, status, data limite e matéria relacionada.
+
 ![EditarTarefa](../assets/Editar.png)
 
 Na tela de criação de tarefa, o usuário pode adicionar uma nova tarefa ao sistema, preenchendo os campos obrigatórios e associando a tarefa a uma matéria específica.
+
 ![Gerenciamento2](../assets/CriarTarefa.png)
 
 A tela de criação de matéria possibilita ao usuário cadastrar novas matérias, que poderão ser associadas às tarefas posteriormente, facilitando a organização dos estudos.
+
 ![NovaMateria](../assets/CriarMateria.png)
 
 ---
@@ -295,21 +301,27 @@ A tela de criação de matéria possibilita ao usuário cadastrar novas matéria
 Abaixo, estão as versões mobile das principais telas do sistema, demonstrando a responsividade e adaptação da interface para dispositivos móveis:
 
 **Login (Mobile)**
+
 ![Login Mobile](../assets/Login-mobile.png)
 
 **Cadastro (Mobile)**
+
 ![Cadastro Mobile](../assets/Cadastrar-mobile.png)
 
 **Gerenciamento de Tarefas (Mobile)**
+
 ![Gerenciamento Mobile](../assets/ListarTarefas-mobile.png)
 
 **Edição de Tarefa (Mobile)**
+
 ![EditarTarefa Mobile](../assets/Editar-mobile.png)
 
 **Criação de Tarefa (Mobile)**
+
 ![Gerenciamento2 Mobile](../assets/CriarTarefa-mobile.png)
 
 **Criação de Matéria (Mobile)**
+
 ![NovaMateria Mobile](../assets/CriarMateria-mobile.png)
 
 As versões mobile das telas foram desenvolvidas utilizando media queries em CSS, garantindo que a interface se adapte automaticamente a diferentes tamanhos de tela e proporcionando uma experiência de uso confortável tanto em computadores quanto em dispositivos móveis.
