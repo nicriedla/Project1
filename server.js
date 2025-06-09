@@ -48,12 +48,12 @@ app.get('/Gerenciamento', async (req, res) => {
   if (!req.session.userId) {
     return res.redirect('/Login');
   }
+  const msg = req.query.msg;
   try {
-    // Busca tarefas do usuário logado
     const tarefas = await tarefaModels.listarTarefasPorUsuario(req.session.userId);
-    res.render('pages/Gerenciamento', { tarefas });
+    res.render('pages/Gerenciamento', { tarefas, msg });
   } catch (error) {
-    res.render('pages/Gerenciamento', { tarefas: [], error: 'Erro ao carregar tarefas.' });
+    res.render('pages/Gerenciamento', { tarefas: [], error: 'Erro ao carregar tarefas.', msg });
   }
 });
 

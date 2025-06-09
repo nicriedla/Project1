@@ -70,7 +70,8 @@ const TarefaController = {
       if (!tarefa) {
         return res.status(404).json({ message: 'Tarefa não encontrada' });
       }
-      res.status(200).json({ message: 'Tarefa excluída com sucesso' });
+      // Redireciona para o gerenciamento com mensagem de sucesso
+      res.redirect('/Gerenciamento?msg=excluida');
     } catch (error) {
       res.status(500).json({ error: error.message });
     }

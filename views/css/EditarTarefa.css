@@ -103,3 +103,63 @@ body {
   background: #636e72;
   color: #fff;
 }
+
+@media (max-width: 600px) {
+  .card,
+  .notebook-card {
+    max-width: 98vw;
+    width: 98vw;
+    padding: 18px 6vw 18px 6vw;
+    border-radius: 8px;
+    margin: 18px auto;
+    box-sizing: border-box;
+  }
+
+  .title,
+  h2 {
+    font-size: 1.25rem;
+    margin-bottom: 18px;
+  }
+
+  .form-label,
+  label {
+    font-size: 0.98rem;
+  }
+
+  .form-input,
+  .form-select,
+  .form-textarea,
+  input[type="text"],
+  input[type="email"],
+  input[type="password"],
+  input[type="date"],
+  input[type="number"],
+  textarea,
+  select {
+    font-size: 1rem;
+    padding: 10px 7px;
+    margin-bottom: 14px;
+  }
+
+  .form-buttons,
+  .btn,
+  button,
+  .btn-save,
+  .btn-cancel,
+  .btn-create {
+    font-size: 1rem;
+    padding: 10px 0;
+    width: 100%;
+    margin: 0 0 10px 0;
+    box-sizing: border-box;
+    display: block;
+  }
+
+  table {
+    font-size: 0.95rem;
+  }
+
+  th, td {
+    padding: 8px 4px;
+  }
+}

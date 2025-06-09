@@ -2,6 +2,7 @@
 <html>
   <head>
     <title>Criar Nova Tarefa</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/views/css/Gerenciamento2.css">
   </head>
   <body class="center-container">
@@ -12,7 +13,7 @@
 
         <div>
           <label class="form-label">Título</label>
-          <input type="text" class="form-input" name="titulo" placeholder="Digite o título da tarefa" required />
+          <input class="form-input" type="text" name="titulo" placeholder="Digite o título da tarefa" required>
         </div>
 
         <div>
@@ -35,6 +36,7 @@
         <div>
           <label class="form-label">Status</label>
           <select class="form-select" name="status">
+            <option value="Não Iniciada">Não Iniciada</option>
             <option value="pendente">Pendente</option>
             <option value="concluido">Concluído</option>
           </select>
@@ -42,7 +44,7 @@
 
         <div>
           <label class="form-label">Data de vencimento</label>
-          <input type="date" class="form-input" name="data_limite" required />
+          <input class="form-input" type="date" name="data_limite" required>
         </div>
 
         <a href="/NovaMateria" class="btn btn-create" style="margin-bottom: 16px;">+ Nova Matéria</a>
