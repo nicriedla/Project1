@@ -1,4 +1,4 @@
-const materiaModels = require('../models/materiaModels');
+const materiaModels = require("../models/materiaModels");
 
 const MateriaController = {
   listarMaterias: async (req, res) => {
@@ -15,12 +15,12 @@ const MateriaController = {
     const usuario_id = req.session.userId; // pega da sessão
 
     if (!nome) {
-      return res.status(400).json({ message: 'Preencha o nome da matéria' });
+      return res.status(400).json({ message: "Preencha o nome da matéria" });
     }
 
     try {
       await materiaModels.criarMateria(nome, usuario_id);
-      res.redirect('/Gerenciamento2');
+      res.redirect("/Gerenciamento2");
     } catch (error) {
       res.status(500).json({ error: error.message });
     }
@@ -33,7 +33,7 @@ const MateriaController = {
     try {
       const materia = await materiaModels.editarMateria(nome, id);
       if (!materia) {
-        return res.status(404).json({ message: 'Matéria não encontrada' });
+        return res.status(404).json({ message: "Matéria não encontrada" });
       }
       res.status(200).json(materia);
     } catch (error) {
@@ -47,9 +47,9 @@ const MateriaController = {
     try {
       const materia = await materiaModels.excluirMateria(id);
       if (!materia) {
-        return res.status(404).json({ message: 'Matéria não encontrada' });
+        return res.status(404).json({ message: "Matéria não encontrada" });
       }
-      res.status(200).json({ message: 'Matéria excluída com sucesso' });
+      res.status(200).json({ message: "Matéria excluída com sucesso" });
     } catch (error) {
       res.status(500).json({ error: error.message });
     }
@@ -57,7 +57,7 @@ const MateriaController = {
 
   listarMateriasPorUsuario: async (usuario_id) => {
     return await materiaModels.listarMateriasPorUsuario(usuario_id);
-  }
+  },
 };
 
 module.exports = MateriaController;

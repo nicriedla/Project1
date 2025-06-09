@@ -1,83 +1,103 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gerenciamento</title>
-    <link rel="stylesheet" href="/views/css/Gerenciamento.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gerenciamento</title>
+  <link rel="stylesheet" href="/views/css/Gerenciamento.css">
 </head>
+
 <body>
-    <div class="card">
-      <% if (typeof msg !== 'undefined' && msg === 'excluida') { %>
-        <div class="success">A tarefa foi excluída com sucesso.</div>
+  <div class="card">
+    <% if (typeof msg !=='undefined' && msg==='excluida' ) { %>
+      <div class="success">A tarefa foi excluída com sucesso.</div>
       <% } %>
-      <h2>Minhas Tarefas</h2>
-      <a href="/Gerenciamento2" class="btn btn-create" style="margin-bottom: 16px; display: inline-block;">+ Nova Tarefa</a>
-      
-      <!-- Tabela para desktop -->
-      <div class="tarefas-table">
-        <table>
-          <thead>
-            <tr>
-              <th>Título</th>
-              <th>Matéria</th>
-              <th>Status</th>
-              <th>Vencimento</th>
-              <th>Ações</th>
-            </tr>
-          </thead>
-          <tbody>
-            <% if (tarefas && tarefas.length > 0) { %>
-              <% tarefas.forEach(function(tarefa) { %>
-                <tr>
-                  <td><%= tarefa.titulo %></td>
-                  <td><%= tarefa.materia_nome %></td>
-                  <td class="status <%= tarefa.status %>"><%= tarefa.status.charAt(0).toUpperCase() + tarefa.status.slice(1) %></td>
-                  <td><%= tarefa.data_limite.toISOString().slice(0,10) %></td>
-                  <td>
-                    <a href="/tarefas/<%= tarefa.id %>/editar" class="btn-edit">Editar</a>
-                    <form action="/tarefas/<%= tarefa.id %>?_method=DELETE" method="POST" style="display:inline;">
-                      <button type="submit" class="btn-delete">Excluir</button>
-                    </form>
-                  </td>
-                </tr>
-              <% }) %>
-            <% } else { %>
+        <h2>Minhas Tarefas</h2>
+        <a href="/Gerenciamento2" class="btn btn-create" style="margin-bottom: 16px; display: inline-block;">+ Nova
+          Tarefa</a>
+
+        <!-- Tabela para desktop -->
+        <div class="tarefas-table">
+          <table>
+            <thead>
               <tr>
-                <td colspan="5">Nenhuma tarefa encontrada.</td>
+                <th>Título</th>
+                <th>Matéria</th>
+                <th>Status</th>
+                <th>Vencimento</th>
+                <th>Ações</th>
               </tr>
-            <% } %>
-          </tbody>
-        </table>
-      </div>
-  
-      <!-- Lista para mobile -->
-      <div class="tarefas-lista">
-        <% if (tarefas && tarefas.length > 0) { %>
-          <% tarefas.forEach(function(tarefa) { %>
-            <div class="tarefa-card">
-              <div><strong>Título:</strong> <%= tarefa.titulo %></div>
-              <div><strong>Matéria:</strong> <%= tarefa.materia_nome %></div>
-              <div><strong>Status:</strong> <span class="status <%= tarefa.status %>"><%= tarefa.status.charAt(0).toUpperCase() + tarefa.status.slice(1) %></span></div>
-              <div><strong>Vencimento:</strong> <%= tarefa.data_limite.toISOString().slice(0,10) %></div>
-              <div class="tarefa-actions">
-                <a href="/tarefas/<%= tarefa.id %>/editar" class="btn-edit">Editar</a>
-                <form action="/tarefas/<%= tarefa.id %>?_method=DELETE" method="POST" style="display:inline;">
-                  <button type="submit" class="btn-delete">Excluir</button>
-                </form>
+            </thead>
+            <tbody>
+              <% if (tarefas && tarefas.length> 0) { %>
+                <% tarefas.forEach(function(tarefa) { %>
+                  <tr>
+                    <td>
+                      <%= tarefa.titulo %>
+                    </td>
+                    <td>
+                      <%= tarefa.materia_nome %>
+                    </td>
+                    <td class="status <%= tarefa.status %>">
+                      <%= tarefa.status.charAt(0).toUpperCase() + tarefa.status.slice(1) %>
+                    </td>
+                    <td>
+                      <%= tarefa.data_limite.toISOString().slice(0,10) %>
+                    </td>
+                    <td>
+                      <a href="/tarefas/<%= tarefa.id %>/editar" class="btn-edit">Editar</a>
+                      <form action="/tarefas/<%= tarefa.id %>?_method=DELETE" method="POST" style="display:inline;">
+                        <button type="submit" class="btn-delete">Excluir</button>
+                      </form>
+                    </td>
+                  </tr>
+                  <% }) %>
+                    <% } else { %>
+                      <tr>
+                        <td colspan="5">Nenhuma tarefa encontrada.</td>
+                      </tr>
+                      <% } %>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- Lista para mobile -->
+        <div class="tarefas-lista">
+          <% if (tarefas && tarefas.length> 0) { %>
+            <% tarefas.forEach(function(tarefa) { %>
+              <div class="tarefa-card">
+                <div><strong>Título:</strong>
+                  <%= tarefa.titulo %>
+                </div>
+                <div><strong>Matéria:</strong>
+                  <%= tarefa.materia_nome %>
+                </div>
+                <div><strong>Status:</strong> <span class="status <%= tarefa.status %>">
+                    <%= tarefa.status.charAt(0).toUpperCase() + tarefa.status.slice(1) %>
+                  </span></div>
+                <div><strong>Vencimento:</strong>
+                  <%= tarefa.data_limite.toISOString().slice(0,10) %>
+                </div>
+                <div class="tarefa-actions">
+                  <a href="/tarefas/<%= tarefa.id %>/editar" class="btn-edit">Editar</a>
+                  <form action="/tarefas/<%= tarefa.id %>?_method=DELETE" method="POST" style="display:inline;">
+                    <button type="submit" class="btn-delete">Excluir</button>
+                  </form>
+                </div>
               </div>
-            </div>
-          <% }) %>
-        <% } else { %>
-          <div class="nenhuma-tarefa">Nenhuma tarefa encontrada.</div>
-        <% } %>
-      </div>
-    </div>
-    <script>
-      setTimeout(() => {
-        const msg = document.querySelector('.success');
-        if(msg) msg.style.display = 'none';
-      }, 3000);
-    </script>
-  </body>
+              <% }) %>
+                <% } else { %>
+                  <div class="nenhuma-tarefa">Nenhuma tarefa encontrada.</div>
+                  <% } %>
+        </div>
+  </div>
+  <script>
+    setTimeout(() => {
+      const msg = document.querySelector('.success');
+      if (msg) msg.style.display = 'none';
+    }, 3000);
+  </script>
+</body>
+
 </html>

@@ -1,43 +1,46 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>Nova Matéria</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/views/css/NovaMateria.css">
-  </head>
-  <body>
-    <div class="card">
-      <h2>Criar Nova Matéria</h2>
-      <form id="novaMateriaForm">
-        <input type="hidden" name="usuario_id" value="<%= usuario_id %>">
-        <div>
-          <label>Nome da Matéria</label>
-          <input type="text" name="nome" required />
-        </div>
-        <button type="submit">Salvar</button>
-      </form>
-      <a href="/Gerenciamento2">Voltar</a>
-    </div>
-    <script>
-      document.getElementById('novaMateriaForm').addEventListener('submit', async function(e) {
-          e.preventDefault();
-          const form = e.target;
-          const data = {
-              nome: form.nome.value,
-              usuario_id: form.usuario_id.value
-          };
-          const res = await fetch('/materias', {
-              method: 'POST',
-              headers: { 'Content-Type': 'application/json' },
-              body: JSON.stringify(data)
-          });
-          if (res.redirected) {
-              window.location.href = res.url;
-          } else {
-              const html = await res.text();
-              document.body.innerHTML = html;
-          }
+
+<head>
+  <title>Nova Matéria</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/views/css/NovaMateria.css">
+</head>
+
+<body>
+  <div class="card">
+    <h2>Criar Nova Matéria</h2>
+    <form id="novaMateriaForm">
+      <input type="hidden" name="usuario_id" value="<%= usuario_id %>">
+      <div>
+        <label>Nome da Matéria</label>
+        <input type="text" name="nome" required />
+      </div>
+      <button type="submit">Salvar</button>
+    </form>
+    <a href="/Gerenciamento2">Voltar</a>
+  </div>
+  <script>
+    document.getElementById('novaMateriaForm').addEventListener('submit', async function (e) {
+      e.preventDefault();
+      const form = e.target;
+      const data = {
+        nome: form.nome.value,
+        usuario_id: form.usuario_id.value
+      };
+      const res = await fetch('/materias', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data)
       });
-    </script>
-  </body>
+      if (res.redirected) {
+        window.location.href = res.url;
+      } else {
+        const html = await res.text();
+        document.body.innerHTML = html;
+      }
+    });
+  </script>
+</body>
+
 </html>

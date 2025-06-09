@@ -1,6 +1,6 @@
 body {
   background: #f5f6fa;
-  font-family: 'Segoe UI', Arial, sans-serif;
+  font-family: "Segoe UI", Arial, sans-serif;
   margin: 0;
   padding: 0;
   min-height: 100vh;
@@ -12,7 +12,7 @@ body {
   margin: 40px auto;
   padding: 32px 28px 24px 28px;
   border-radius: 10px;
-  box-shadow: 0 2px 16px rgba(0,0,0,0.08);
+  box-shadow: 0 2px 16px rgba(0, 0, 0, 0.08);
 }
 
 h2 {
@@ -47,7 +47,8 @@ table {
   margin-top: 10px;
 }
 
-th, td {
+th,
+td {
   padding: 12px 10px;
   text-align: left;
 }
@@ -84,7 +85,8 @@ tr:hover {
   color: #00b894;
 }
 
-.btn-edit, .btn-delete {
+.btn-edit,
+.btn-delete {
   padding: 6px 14px;
   border: none;
   border-radius: 5px;
@@ -125,8 +127,12 @@ tr:hover {
 }
 
 /* Esconde a lista no desktop, mostra tabela */
-.tarefas-lista { display: none; }
-.tarefas-table { display: block; }
+.tarefas-lista {
+  display: none;
+}
+.tarefas-table {
+  display: block;
+}
 
 /* Mobile: esconde tabela, mostra lista em cards */
 @media (max-width: 600px) {
@@ -162,16 +168,24 @@ tr:hover {
     overflow-x: auto;
     width: 100%;
   }
-  th, td {
+  th,
+  td {
     padding: 8px 4px;
     white-space: nowrap;
   }
-  .tarefas-table { display: none; }
-  .tarefas-lista { display: flex; flex-direction: column; gap: 14px; margin-top: 10px; }
+  .tarefas-table {
+    display: none;
+  }
+  .tarefas-lista {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    margin-top: 10px;
+  }
   .tarefa-card {
     background: #f9f9f9;
     border-radius: 8px;
-    box-shadow: 0 1px 6px rgba(0,0,0,0.04);
+    box-shadow: 0 1px 6px rgba(0, 0, 0, 0.04);
     padding: 14px 10px 10px 10px;
     display: flex;
     flex-direction: column;

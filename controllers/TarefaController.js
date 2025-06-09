@@ -1,5 +1,5 @@
-const tarefaModels = require('../models/tarefaModels');
-const materiaModels = require('../models/materiaModels'); // Certifique-se de que o caminho está correto
+const tarefaModels = require("../models/tarefaModels");
+const materiaModels = require("../models/materiaModels"); // Certifique-se de que o caminho está correto
 
 const TarefaController = {
   listarTarefas: async (req, res) => {
@@ -16,13 +16,13 @@ const TarefaController = {
 
     const titulo = body.titulo;
     const descricao = body.descricao;
-    const status = body.status || 'pendente';
+    const status = body.status || "pendente";
     const data_limite = body.data_limite;
     const usuario_id = req.session.userId; // PEGA DA SESSÃO!
     const materia_id = body.materia_id;
 
     if (!titulo || !descricao || !data_limite || !materia_id) {
-      return res.status(400).json({ message: 'Preencha todos os campos' });
+      return res.status(400).json({ message: "Preencha todos os campos" });
     }
 
     try {
@@ -35,7 +35,7 @@ const TarefaController = {
         materia_id
       );
       // Redireciona para o gerenciamento após criar
-      res.redirect('/Gerenciamento');
+      res.redirect("/Gerenciamento");
     } catch (error) {
       res.status(500).json({ error: error.message });
     }
@@ -54,10 +54,10 @@ const TarefaController = {
         id
       );
       if (!tarefa) {
-        return res.status(404).json({ message: 'Tarefa não encontrada' });
+        return res.status(404).json({ message: "Tarefa não encontrada" });
       }
       // Redireciona para a tela de gerenciamento após editar
-      res.redirect('/Gerenciamento');
+      res.redirect("/Gerenciamento");
     } catch (error) {
       res.status(500).json({ error: error.message });
     }
@@ -68,10 +68,10 @@ const TarefaController = {
     try {
       const tarefa = await tarefaModels.excluirTarefa(id);
       if (!tarefa) {
-        return res.status(404).json({ message: 'Tarefa não encontrada' });
+        return res.status(404).json({ message: "Tarefa não encontrada" });
       }
       // Redireciona para o gerenciamento com mensagem de sucesso
-      res.redirect('/Gerenciamento?msg=excluida');
+      res.redirect("/Gerenciamento?msg=excluida");
     } catch (error) {
       res.status(500).json({ error: error.message });
     }
@@ -81,14 +81,16 @@ const TarefaController = {
     const { id } = req.params;
     try {
       const tarefa = await tarefaModels.buscarTarefaPorId(id);
-      if (!tarefa) return res.redirect('/Gerenciamento');
+      if (!tarefa) return res.redirect("/Gerenciamento");
       // Busque as matérias do usuário logado
-      const materias = await materiaModels.listarMateriasPorUsuario(req.session.userId);
-      res.render('pages/EditarTarefa', { tarefa, materias });
+      const materias = await materiaModels.listarMateriasPorUsuario(
+        req.session.userId
+      );
+      res.render("pages/EditarTarefa", { tarefa, materias });
     } catch (error) {
-      res.redirect('/Gerenciamento');
+      res.redirect("/Gerenciamento");
     }
-  }
+  },
 };
 
 module.exports = TarefaController;

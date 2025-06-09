@@ -1,83 +1,88 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>Criar Nova Tarefa</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/views/css/Gerenciamento2.css">
-  </head>
-  <body class="center-container">
-    <div class="card">
-      <h2 class="title">Nova Tarefa</h2>
-      <form id="novaTarefaForm">
-        <a href="/NovaMateria" class="btn btn-create" style="margin-bottom: 16px;">+ Nova Matéria</a>
-        <input type="hidden" name="usuario_id" value="<%= usuario_id %>">
 
-        <div>
-          <label class="form-label">Título</label>
-          <input class="form-input" type="text" name="titulo" placeholder="Digite o título da tarefa" required>
-        </div>
+<head>
+  <title>Criar Nova Tarefa</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/views/css/Gerenciamento2.css">
+</head>
 
-        <div>
-          <label class="form-label">Descrição</label>
-          <textarea class="form-textarea" name="descricao" placeholder="Descrição da tarefa" required></textarea>
-        </div>
+<body class="center-container">
+  <div class="card">
+    <h2 class="title">Nova Tarefa</h2>
+    <form id="novaTarefaForm">
+      <a href="/NovaMateria" class="btn btn-create" style="margin-bottom: 16px;">+ Nova Matéria</a>
+      <input type="hidden" name="usuario_id" value="<%= usuario_id %>">
 
-        <div>
-          <label class="form-label">Matéria</label>
-          <select class="form-select" name="materia_id" required>
-            <option value="">Selecione</option>
-            <% if (materias && materias.length > 0) { %>
-              <% materias.forEach(function(materia) { %>
-                <option value="<%= materia.id %>"><%= materia.nome %></option>
+      <div>
+        <label class="form-label">Título</label>
+        <input class="form-input" type="text" name="titulo" placeholder="Digite o título da tarefa" required>
+      </div>
+
+      <div>
+        <label class="form-label">Descrição</label>
+        <textarea class="form-textarea" name="descricao" placeholder="Descrição da tarefa" required></textarea>
+      </div>
+
+      <div>
+        <label class="form-label">Matéria</label>
+        <select class="form-select" name="materia_id" required>
+          <option value="">Selecione</option>
+          <% if (materias && materias.length> 0) { %>
+            <% materias.forEach(function(materia) { %>
+              <option value="<%= materia.id %>">
+                <%= materia.nome %>
+              </option>
               <% }) %>
-            <% } %>
-          </select>
-        </div>
+                <% } %>
+        </select>
+      </div>
 
-        <div>
-          <label class="form-label">Status</label>
-          <select class="form-select" name="status">
-            <option value="Não Iniciada">Não Iniciada</option>
-            <option value="pendente">Pendente</option>
-            <option value="concluido">Concluído</option>
-          </select>
-        </div>
+      <div>
+        <label class="form-label">Status</label>
+        <select class="form-select" name="status">
+          <option value="Não Iniciada">Não Iniciada</option>
+          <option value="pendente">Pendente</option>
+          <option value="concluido">Concluído</option>
+        </select>
+      </div>
 
-        <div>
-          <label class="form-label">Data de vencimento</label>
-          <input class="form-input" type="date" name="data_limite" required>
-        </div>
+      <div>
+        <label class="form-label">Data de vencimento</label>
+        <input class="form-input" type="date" name="data_limite" required>
+      </div>
 
-        <div class="form-buttons">
-          <a href="/Gerenciamento" class="btn btn-cancel">Cancelar</a>
-          <button type="submit" class="btn btn-save">Salvar</button>
-        </div>
-      </form>
-    </div>
-    <script>
-document.getElementById('novaTarefaForm').addEventListener('submit', async function(e) {
-    e.preventDefault();
-    const form = e.target;
-    const data = {
+      <div class="form-buttons">
+        <a href="/Gerenciamento" class="btn btn-cancel">Cancelar</a>
+        <button type="submit" class="btn btn-save">Salvar</button>
+      </div>
+    </form>
+  </div>
+  <script>
+    document.getElementById('novaTarefaForm').addEventListener('submit', async function (e) {
+      e.preventDefault();
+      const form = e.target;
+      const data = {
         usuario_id: form.usuario_id.value,
         titulo: form.titulo.value,
         descricao: form.descricao.value,
         materia_id: form.materia_id.value,
         status: form.status.value,
         data_limite: form.data_limite.value
-    };
-    const res = await fetch('/tarefas', {
+      };
+      const res = await fetch('/tarefas', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(data)
-    });
-    if (res.redirected) {
+      });
+      if (res.redirected) {
         window.location.href = res.url;
-    } else {
+      } else {
         const html = await res.text();
         document.body.innerHTML = html;
-    }
-});
-</script>
-  </body>
+      }
+    });
+  </script>
+</body>
+
 </html>
