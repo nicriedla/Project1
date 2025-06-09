@@ -9,6 +9,7 @@
     <div class="card">
       <h2 class="title">Nova Tarefa</h2>
       <form id="novaTarefaForm">
+        <a href="/NovaMateria" class="btn btn-create" style="margin-bottom: 16px;">+ Nova Matéria</a>
         <input type="hidden" name="usuario_id" value="<%= usuario_id %>">
 
         <div>
@@ -46,8 +47,6 @@
           <label class="form-label">Data de vencimento</label>
           <input class="form-input" type="date" name="data_limite" required>
         </div>
-
-        <a href="/NovaMateria" class="btn btn-create" style="margin-bottom: 16px;">+ Nova Matéria</a>
 
         <div class="form-buttons">
           <a href="/Gerenciamento" class="btn btn-cancel">Cancelar</a>

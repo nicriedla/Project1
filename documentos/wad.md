@@ -266,7 +266,7 @@ Abaixo estão descritos todos os endpoints da WebAPI do sistema **Estuda+**, org
 
 O frontend do Estuda+ foi desenvolvido utilizando EJS para renderização dinâmica das páginas, exibindo dados reais do sistema, como tarefas e matérias cadastradas pelo usuário. Todas as páginas contam com estilização própria em CSS, garantindo uma navegação intuitiva e visual agradável.
 
-A integração entre frontend e backend é feita por meio de formulários HTML e, quando necessário, pela fetch API para operações assíncronas. O layout foi pensado para facilitar o uso, com menus claros e feedback visual para as principais ações do usuário.
+A integração entre frontend e backend é realizada principalmente por meio da fetch API, que permite operações assíncronas como cadastro, edição e exclusão de dados sem recarregar a página. Todos os formulários das páginas utilizam JavaScript para capturar o evento de envio e enviar os dados via fetch, proporcionando uma experiência mais fluida e moderna ao usuário. O layout foi projetado para ser intuitivo, com menus claros e feedback visual imediato para as principais ações do usuário.
 
 A estrutura MVC foi mantida durante todo o desenvolvimento, separando claramente as responsabilidades entre modelos, controladores, views e rotas. O sistema pode ser executado facilmente com `npm start` ou `node server.js`, permitindo o gerenciamento completo das informações pelo usuário.
 
