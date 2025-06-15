@@ -335,10 +335,22 @@ As versões mobile das telas foram desenvolvidas utilizando media queries em CSS
 *VIDEO: Insira o link do vídeo demonstrativo nesta seção*
 *Descreva e ilustre aqui o desenvolvimento do sistema web completo, explicando brevemente o que foi entregue em termos de código e sistema. Utilize prints de tela para ilustrar.*
 
-### 4.2 Conclusões e Trabalhos Futuros (Semana 8)
+### 4.2 Conclusões e Trabalhos Futuros
 
-*Indique pontos fortes e pontos a melhorar de maneira geral.*
-*Relacione também quaisquer outras ideias que você tenha para melhorias futuras.*
+**Pontos fortes**
+
+- Arquitetura MVC bem definida, facilitando manutenção.
+- Interface responsiva, usável tanto em desktop quanto mobile.
+
+**Pontos a melhorar**
+
+- Implementar mensagens para notificações de tarefas vencidas.
+- Refinar experiência do usuário com feedbacks em tempo real.
+
+**Ideias Futuras**
+
+- Integração com calendário Google/Outlook para sincronizar datas‑limite.
+- Tema escuro/claro automático via preferências do sistema.
 
 
 

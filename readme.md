@@ -14,7 +14,6 @@
 A estrutura do projeto é organizada da seguinte forma:
 
 
-
 ```
 Project1/
 │
@@ -186,6 +185,19 @@ Aqui estão exemplos de chamadas que você pode testar no Postman:
 
 ---
 
+Fluxos da Interface
+-------------
+
+| Tela | Descrição |
+|------|-----------|
+| ![Tela de Cadastro](./assets/Cadastro.gif) | **Cadastro:** criação de conta pelo usuário. |
+| ![Tela de Login](./assets/Login.gif) | **Login:** autenticação de usuários existentes. |
+| ![Tela de Criação de Tarefa](./assets/CriarTarefa.gif) | **Nova Tarefa:** preenchimento de formulário e salvamento. |
+| ![Tela de Edição de Tarefa](./assets/EditarTarefa.gif) | **Edição:** alteração de dados de uma tarefa existente. |
+| ![Tela de Deleção de Tarefa](./assets/DeletarTarefa.gif) | **Exclusão:** remoção de tarefa da lista do usuário. |
+
+---
+
 Funcionalidades
 ---------------
 
@@ -194,6 +206,21 @@ Funcionalidades
 * **UUID:** Utilização de UUID como chave primária nas tabelas.
 * **Scripts com `nodemon`:** Utilização do `nodemon` para reiniciar automaticamente o servidor após alterações no código.
 * **Testes:** Inclui estrutura básica para testes automatizados.
+
+---
+
+## Tecnologias Utilizadas
+
+| Camada | Tecnologias |
+|--------|-------------|
+| **Back‑end** | Node.js v22.13.1, Express.js, Sequelize ORM |
+| **Banco de Dados** | PostgreSQL (via Supabase) |
+| **Autenticação** | JSON Web Tokens (JWT), Bcrypt |
+| **Testes** | Jest, Supertest |
+| **Dev Tools** | Nodemon, ESLint, Dotenv |
+| **Infraestrutura** | Supabase (hospedagem do banco), GitHub (repositório) |
+
+---
 
 Scripts Disponíveis
 -------------------
