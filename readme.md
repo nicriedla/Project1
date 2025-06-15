@@ -215,9 +215,6 @@ Funcionalidades
 |--------|-------------|
 | **Back‑end** | Node.js v22.13.1, Express.js, Sequelize ORM |
 | **Banco de Dados** | PostgreSQL (via Supabase) |
-| **Autenticação** | JSON Web Tokens (JWT), Bcrypt |
-| **Testes** | Jest, Supertest |
-| **Dev Tools** | Nodemon, ESLint, Dotenv |
 | **Infraestrutura** | Supabase (hospedagem do banco), GitHub (repositório) |
 
 ---
