@@ -10,8 +10,7 @@
 <body class="center-container">
   <div class="card">
     <h2 class="title">Nova Tarefa</h2>
-    <form id="novaTarefaForm">
-      <a href="/NovaMateria" class="btn btn-create" style="margin-bottom: 16px;">+ Nova Matéria</a>
+      <a href="/NovaMateria" class="btn btn-create">Adicionar Matéria</a>
       <input type="hidden" name="usuario_id" value="<%= usuario_id %>">
 
       <div>
@@ -33,8 +32,8 @@
               <option value="<%= materia.id %>">
                 <%= materia.nome %>
               </option>
-              <% }) %>
-                <% } %>
+            <% }) %>
+          <% } %>
         </select>
       </div>
 
@@ -54,35 +53,68 @@
 
       <div class="form-buttons">
         <a href="/Gerenciamento" class="btn btn-cancel">Cancelar</a>
-        <button type="submit" class="btn btn-save">Salvar</button>
+        <button id="btn-save" class="btn btn-save">Salvar</button>
       </div>
-    </form>
   </div>
   <script>
-    document.getElementById('novaTarefaForm').addEventListener('submit', async function (e) {
-      e.preventDefault();
-      const form = e.target;
-      const data = {
-        usuario_id: form.usuario_id.value,
-        titulo: form.titulo.value,
-        descricao: form.descricao.value,
-        materia_id: form.materia_id.value,
-        status: form.status.value,
-        data_limite: form.data_limite.value
-      };
-      const res = await fetch('/tarefas', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(data)
-      });
-      if (res.redirected) {
-        window.location.href = res.url;
-      } else {
-        const html = await res.text();
-        document.body.innerHTML = html;
-      }
+  // Pega o id do usuário da página
+  const usuarioId = document.querySelector('[name="usuario_id"]').value;
+  const draftKey = `novaTarefaDraft_${usuarioId}`;
+
+  // Salva os dados ao clicar em "+ Nova Matéria"
+  document.querySelector('.btn-create').addEventListener('click', function () {
+    const formData = {
+      titulo: document.querySelector('[name="titulo"]').value,
+      descricao: document.querySelector('[name="descricao"]').value,
+      materia_id: document.querySelector('[name="materia_id"]').value,
+      status: document.querySelector('[name="status"]').value,
+      data_limite: document.querySelector('[name="data_limite"]').value
+    };
+    localStorage.setItem(draftKey, JSON.stringify(formData));
+  });
+
+  // Restaura os dados ao carregar a página
+  window.addEventListener('DOMContentLoaded', function () {
+    const draft = localStorage.getItem(draftKey);
+    if (draft) {
+      const data = JSON.parse(draft);
+      if (data.titulo) document.querySelector('[name="titulo"]').value = data.titulo;
+      if (data.descricao) document.querySelector('[name="descricao"]').value = data.descricao;
+      if (data.materia_id) document.querySelector('[name="materia_id"]').value = data.materia_id;
+      if (data.status) document.querySelector('[name="status"]').value = data.status;
+      if (data.data_limite) document.querySelector('[name="data_limite"]').value = data.data_limite;
+    }
+  });
+
+  // Limpa o draft ao cancelar
+  document.querySelector('.btn-cancel').addEventListener('click', function () {
+    localStorage.removeItem(draftKey);
+  });
+
+  // Salvar tarefa via fetch ao clicar em "Salvar"
+  document.getElementById('btn-save').addEventListener('click', async function (e) {
+    e.preventDefault();
+    const data = {
+      usuario_id: usuarioId,
+      titulo: document.querySelector('[name="titulo"]').value,
+      descricao: document.querySelector('[name="descricao"]').value,
+      materia_id: document.querySelector('[name="materia_id"]').value,
+      status: document.querySelector('[name="status"]').value,
+      data_limite: document.querySelector('[name="data_limite"]').value
+    };
+    const res = await fetch('/tarefas', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(data)
     });
-  </script>
+    const result = await res.json();
+    if (result.redirect) {
+      window.location.href = result.redirect;
+    } else if (result.error) {
+      alert(result.error);
+    }
+  });
+</script>
 </body>
 
 </html>

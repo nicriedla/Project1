@@ -13,10 +13,10 @@
     <% if (typeof msg !=='undefined' && msg==='excluida' ) { %>
       <div class="success">A tarefa foi excluída com sucesso.</div>
       <% } %>
-        <h2>Minhas Tarefas</h2>
-        <a href="/Gerenciamento2" class="btn btn-create" style="margin-bottom: 16px; display: inline-block;">+ Nova
-          Tarefa</a>
-
+        <div class="card-inicio">
+          <h2>Minhas Tarefas</h2>
+          <a href="/">Sair</a>
+        </div>
         <!-- Tabela para desktop -->
         <div class="tarefas-table">
           <table>
@@ -26,7 +26,7 @@
                 <th>Matéria</th>
                 <th>Status</th>
                 <th>Vencimento</th>
-                <th>Ações</th>
+                <th></th>
               </tr>
             </thead>
             <tbody>
@@ -47,9 +47,7 @@
                     </td>
                     <td>
                       <a href="/tarefas/<%= tarefa.id %>/editar" class="btn-edit">Editar</a>
-                      <form action="/tarefas/<%= tarefa.id %>?_method=DELETE" method="POST" style="display:inline;">
-                        <button type="submit" class="btn-delete">Excluir</button>
-                      </form>
+                      <button class="btn-delete" data-id="<%= tarefa.id %>">Excluir</button>
                     </td>
                   </tr>
                   <% }) %>
@@ -81,9 +79,7 @@
                 </div>
                 <div class="tarefa-actions">
                   <a href="/tarefas/<%= tarefa.id %>/editar" class="btn-edit">Editar</a>
-                  <form action="/tarefas/<%= tarefa.id %>?_method=DELETE" method="POST" style="display:inline;">
-                    <button type="submit" class="btn-delete">Excluir</button>
-                  </form>
+                  <button type="submit" class="btn-delete" data-id="<%= tarefa.id %>">Excluir</button>
                 </div>
               </div>
               <% }) %>
@@ -91,12 +87,55 @@
                   <div class="nenhuma-tarefa">Nenhuma tarefa encontrada.</div>
                   <% } %>
         </div>
+        <a href="/Gerenciamento2" class="btn btn-create">Nova Tarefa</a>
+
   </div>
   <script>
     setTimeout(() => {
       const msg = document.querySelector('.success');
       if (msg) msg.style.display = 'none';
     }, 3000);
+
+    document.querySelectorAll('.btn-delete').forEach(btn => {
+      btn.addEventListener('click', async function () {
+        if (!confirm('Tem certeza que deseja excluir esta tarefa?')) return;
+        const id = this.getAttribute('data-id');
+        const res = await fetch(`/tarefas/${id}`, {
+          method: 'DELETE',
+          headers: { 'Content-Type': 'application/json' }
+        });
+        if (res.status >= 200 && res.status < 300) {
+          location.reload();
+        } else {
+          alert('Erro ao excluir tarefa.');
+        }
+      });
+    });
+
+    // Código para criação de tarefa
+    const btnCreate = document.querySelector('.btn-create');
+    if (btnCreate) {
+      btnCreate.addEventListener('click', async function () {
+        const data = {
+          titulo: document.querySelector('input[name="titulo"]').value,
+          materia_nome: document.querySelector('input[name="materia_nome"]').value,
+          status: 'pendente',
+          data_limite: document.querySelector('input[name="data_limite"]').value
+        };
+        const res = await fetch('/tarefas', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(data)
+        });
+        localStorage.removeItem(draftKey);
+        const result = await res.json();
+        if (result.redirect) {
+          window.location.href = result.redirect;
+        } else if (result.error) {
+          alert(result.error);
+        }
+      });
+    }
   </script>
 </body>
 

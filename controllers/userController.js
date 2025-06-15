@@ -81,10 +81,8 @@ const loginUser = async (req, res) => {
       req.session.userId = user.id;
       return res.redirect("/Gerenciamento");
     } else {
-      return res.render("pages/Login", {
-        success: undefined,
-        error: "Email ou senha inválidos.",
-      });
+      // Se erro:
+      return res.status(401).json({ error: "Email ou senha inválidos" });
     }
   } catch (error) {
     return res.render("pages/Login", {

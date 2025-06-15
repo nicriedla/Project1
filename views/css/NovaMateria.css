@@ -43,7 +43,7 @@ input[type="text"] {
   width: 100%;
   padding: 12px 10px;
   margin-bottom: 22px;
-  border: 1px solid #dfe6e9;
+  border: 1.5px solid #dfe6e9;
   border-radius: 7px;
   font-size: 1.08rem;
   background: #f9f9f9;
@@ -52,7 +52,7 @@ input[type="text"] {
 }
 
 input[type="text"]:focus {
-  border: 1.5px solid #0984e3;
+  border: 1.5px solid #8509e3;
   outline: none;
   background: #fff;
 }
@@ -60,7 +60,7 @@ input[type="text"]:focus {
 button[type="submit"] {
   width: 100%;
   padding: 11px 0;
-  background: #0984e3;
+  background: #8509e3;
   color: #fff;
   border: none;
   border-radius: 7px;
@@ -72,20 +72,26 @@ button[type="submit"] {
 }
 
 button[type="submit"]:hover {
-  background: #74b9ff;
+  background: #b47fde;
 }
 
 a {
   display: block;
+  padding: 11px 0;
+  border: 1px solid #8509e3;
+  border-radius: 7px;
   text-align: center;
-  color: #0984e3;
+  color: #8509e3;
   text-decoration: none;
   font-weight: 500;
   margin-top: 10px;
 }
 
 a:hover {
-  text-decoration: underline;
+  text-decoration: none;
+  background: #b47fde;
+  color: #fff;
+  border-color: #b47fde;
 }
 
 @media (max-width: 600px) {

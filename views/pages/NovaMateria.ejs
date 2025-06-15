@@ -10,34 +10,30 @@
 <body>
   <div class="card">
     <h2>Criar Nova Matéria</h2>
-    <form id="novaMateriaForm">
-      <input type="hidden" name="usuario_id" value="<%= usuario_id %>">
-      <div>
-        <label>Nome da Matéria</label>
-        <input type="text" name="nome" required />
-      </div>
-      <button type="submit">Salvar</button>
-    </form>
+    <input type="hidden" name="usuario_id" value="<%= usuario_id %>">
+    <div>
+      <label>Nome da Matéria</label>
+      <input type="text" name="nome" required />
+    </div>
+    <button id="btn-save-materia" type="submit">Salvar</button>
     <a href="/Gerenciamento2">Voltar</a>
   </div>
   <script>
-    document.getElementById('novaMateriaForm').addEventListener('submit', async function (e) {
+    document.getElementById('btn-save-materia').addEventListener('click', async function (e) {
       e.preventDefault();
-      const form = e.target;
-      const data = {
-        nome: form.nome.value,
-        usuario_id: form.usuario_id.value
-      };
+      const nome = document.querySelector('[name="nome"]').value;
+      const usuario_id = document.querySelector('[name="usuario_id"]').value;
+      const data = { nome, usuario_id };
       const res = await fetch('/materias', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(data)
       });
-      if (res.redirected) {
-        window.location.href = res.url;
-      } else {
-        const html = await res.text();
-        document.body.innerHTML = html;
+      const result = await res.json();
+      if (result.redirect) {
+        window.location.href = result.redirect;
+      } else if (result.error) {
+        alert(result.error);
       }
     });
   </script>

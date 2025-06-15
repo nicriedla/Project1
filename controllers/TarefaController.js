@@ -34,8 +34,8 @@ const TarefaController = {
         usuario_id,
         materia_id
       );
-      // Redireciona para o gerenciamento após criar
-      res.redirect("/Gerenciamento");
+      // Em vez de res.redirect, envie JSON com a URL de destino:
+      res.json({ redirect: "/Gerenciamento" });
     } catch (error) {
       res.status(500).json({ error: error.message });
     }
@@ -56,8 +56,8 @@ const TarefaController = {
       if (!tarefa) {
         return res.status(404).json({ message: "Tarefa não encontrada" });
       }
-      // Redireciona para a tela de gerenciamento após editar
-      res.redirect("/Gerenciamento");
+      // Retorne JSON para o fetch
+      res.json({ redirect: "/Gerenciamento" });
     } catch (error) {
       res.status(500).json({ error: error.message });
     }
@@ -70,8 +70,8 @@ const TarefaController = {
       if (!tarefa) {
         return res.status(404).json({ message: "Tarefa não encontrada" });
       }
-      // Redireciona para o gerenciamento com mensagem de sucesso
-      res.redirect("/Gerenciamento?msg=excluida");
+      // Retorne sucesso para a Fetch API
+      res.status(200).json({ message: "Tarefa excluída com sucesso" });
     } catch (error) {
       res.status(500).json({ error: error.message });
     }

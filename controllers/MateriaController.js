@@ -20,7 +20,7 @@ const MateriaController = {
 
     try {
       await materiaModels.criarMateria(nome, usuario_id);
-      res.redirect("/Gerenciamento2");
+      res.json({ redirect: "/Gerenciamento2" });
     } catch (error) {
       res.status(500).json({ error: error.message });
     }

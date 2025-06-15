@@ -33,6 +33,20 @@
                         </form>
     </div>
     <script>
+        setTimeout(() => {
+            const msg = document.querySelector('.success');
+            if (msg) msg.style.display = 'none';
+        }, 3000);
+
+        // Cria o elemento de erro uma única vez, se não existir
+        let errorDiv = document.querySelector('.error');
+        if (!errorDiv) {
+            errorDiv = document.createElement('div');
+            errorDiv.className = 'error';
+            errorDiv.style.display = 'none';
+            document.querySelector('.login').insertBefore(errorDiv, document.getElementById('loginForm'));
+        }
+
         document.getElementById('loginForm').addEventListener('submit', async function (e) {
             e.preventDefault();
             const form = e.target;
@@ -47,9 +61,13 @@
             });
             if (res.redirected) {
                 window.location.href = res.url;
-            } else {
-                const html = await res.text();
-                document.body.innerHTML = html;
+            } else if (res.headers.get('content-type')?.includes('application/json')) {
+                const json = await res.json();
+                errorDiv.textContent = json.error || 'Erro ao fazer login.';
+                errorDiv.style.display = 'block';
+                setTimeout(() => {
+                    errorDiv.style.display = 'none';
+                }, 3000);
             }
         });
     </script>
