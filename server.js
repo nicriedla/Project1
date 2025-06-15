@@ -20,8 +20,7 @@ app.set("views", path.join(__dirname, "views"));
 app.use(cors());
 app.use(bodyParser.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(express.static(path.join(__dirname, "public")));
-app.use("/views/css", express.static(path.join(__dirname, "views/css")));
+app.use(express.static(path.join(__dirname, 'public')));
 app.use(methodOverride("_method"));
 
 app.use(
