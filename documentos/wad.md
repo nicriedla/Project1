@@ -328,12 +328,30 @@ As versões mobile das telas foram desenvolvidas utilizando media queries em CSS
 
 ---
 
-## <a name="c4"></a>4. Desenvolvimento da Aplicação Web (Semana 8)
+## <a name="c4"></a>4. Desenvolvimento da Aplicação Web
 
-### 4.1 Demonstração do Sistema Web (Semana 8)
+### 4.1 Demonstração do Sistema Web
 
-*VIDEO: Insira o link do vídeo demonstrativo nesta seção*
-*Descreva e ilustre aqui o desenvolvimento do sistema web completo, explicando brevemente o que foi entregue em termos de código e sistema. Utilize prints de tela para ilustrar.*
+O **Estuda+** foi desenvolvido seguindo o padrão MVC em *Node.js* com *Express*. No back‑end, cada *controller* recebe requisições REST, aplica a lógica de negócio e utiliza *models* Sequelize para persistir os dados em um banco *PostgreSQL* hospedado no *Supabase*. O front‑end emprega *EJS* mais JavaScript; todas as interações com a API são feitas via *fetch*, garantindo uma experiência assíncrona e sem recarregamentos de página.  
+
+O vídeo abaixo percorre todo o fluxo — cadastro, login, criação, edição e exclusão de tarefas, além de uma visão geral da estrutura técnica.
+
+**Assista Aqui:**[ Vídeo Demonstrativo](../assets/Project1.mp4)
+
+
+- **Código-fonte completo** (controllers, models, services, rotas) organizado em pastas semânticas.
+- **Scripts de migração** SQL em `scripts/` para criação de tabelas com chaves estrangeiras entre usuários, matérias e tarefas.
+- **Configuração Supabase/Sequelize** em `config/` para facilitar deploy local ou em nuvem.
+
+Abaixo, alguns GIFs que ilustram o fluxo principal da aplicação:
+
+| Tela | Descrição |
+|------|-----------|
+| ![Tela de Cadastro](../assets/Cadastro.gif) | **Cadastro:** criação de conta pelo usuário. |
+| ![Tela de Login](../assets/Login.gif) | **Login:** autenticação de usuários existentes. |
+| ![Tela de Criação de Tarefa](../assets/CriarTarefa.gif) | **Nova Tarefa:** preenchimento de formulário e salvamento. |
+| ![Tela de Edição de Tarefa](../assets/EditarTarefa.gif) | **Edição:** alteração de dados de uma tarefa existente. |
+| ![Tela de Deleção de Tarefa](../assets/DeletarTarefa.gif) | **Exclusão:** remoção de tarefa da lista do usuário. |
 
 ### 4.2 Conclusões e Trabalhos Futuros
 

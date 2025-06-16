@@ -188,6 +188,12 @@ Aqui estão exemplos de chamadas que você pode testar no Postman:
 Fluxos da Interface
 -------------
 
+O vídeo abaixo percorre todo o fluxo — cadastro, login, criação, edição e exclusão de tarefas, além de uma visão geral da estrutura técnica.
+
+**Assista Aqui:**[ Vídeo Demonstrativo](./assets/Project1.mp4)
+
+Abaixo, alguns GIFs que ilustram visualmente as principais funcionalidades do sistema:
+
 | Tela | Descrição |
 |------|-----------|
 | ![Tela de Cadastro](./assets/Cadastro.gif) | **Cadastro:** criação de conta pelo usuário. |
