@@ -355,21 +355,13 @@ Abaixo, alguns GIFs que ilustram o fluxo principal da aplicação:
 
 ### 4.2 Conclusões e Trabalhos Futuros
 
-**Pontos fortes**
+Ao longo do desenvolvimento do projeto, enfrentei desafios que foram fundamentais para meu crescimento técnico. Um dos principais foi compreender com clareza a diferença entre as camadas model e controller, já que, inicialmente, havia confusão quanto às responsabilidades atribuídas a cada uma. Com o apoio de uma aula com o monitor de programação, foi possível esclarecer esses conceitos e, a partir disso, organizar a estrutura do projeto de forma mais limpa, eficiente e aderente às boas práticas de desenvolvimento.
 
-- Arquitetura MVC bem definida, facilitando manutenção.
-- Interface responsiva, usável tanto em desktop quanto mobile.
+Além disso, outro aprendizado significativo foi relacionado à responsividade da aplicação. Com a colaboração da equipe de projeto, aprendi a adaptar a interface para diferentes dispositivos e tamanhos de tela, garantindo maior acessibilidade e usabilidade ao usuário final.
 
-**Pontos a melhorar**
+Entre os pontos fortes do projeto, destacam-se a adoção de uma arquitetura MVC bem definida, que facilita a manutenção e a escalabilidade da aplicação, além da interface responsiva, que contribui diretamente para a usabilidade em diferentes plataformas. No entanto, ainda há aspectos a serem aprimorados, como a implementação de mensagens automáticas para notificação de tarefas vencidas e o refinamento da experiência do usuário com feedbacks em tempo real.
 
-- Implementar mensagens para notificações de tarefas vencidas.
-- Refinar experiência do usuário com feedbacks em tempo real.
-
-**Ideias Futuras**
-
-- Integração com calendário Google/Outlook para sincronizar datas‑limite.
-- Tema escuro/claro automático via preferências do sistema.
-
+Como possíveis evoluções, considera-se a integração com calendários do Google ou Outlook para sincronização de prazos e compromissos, bem como a implementação de um modo claro/escuro automático, respeitando as preferências do sistema do usuário. Essas melhorias visam tornar a aplicação ainda mais funcional, intuitiva e personalizada.
 
 
 ## <a name="c5"></a>5. Referências
